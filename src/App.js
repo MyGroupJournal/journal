@@ -1,25 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from "./Components/Login/Login";
+import {useEffect, useState} from "react";
+import {Route, Routes, useNavigate} from "react-router-dom";
+import Main from "./Components/Main/Main";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+export default function App() {
+    const [loader, setLoader] = useState(true)
+    //eslint-disable-next-line
+    const [page, setPage] = useState('/')
+    const [user, setUser] = useState('admin')
+    const navigate = useNavigate()
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        navigate(page.toLowerCase())
+        // eslint-disable-next-line
+    }, [page]);
+    function userSet(item) {
+        setUser(item)
+    }
+    function setLoading(status) {setLoader(status)}
+    function pageSet(current) {setPage(current)}
+    return (
+        <>
+            {!loader && <div className="loader"></div>}
+            <Header/>
+            <Routes>
+                <Route path={'/'}  element={<Login setUser={(current) => userSet(current)} pageSet={(current) => pageSet(current)} setLoading={(current) => setLoading(current)} />}/>
+                <Route path={'/main'} element={(page==='main') && <Main user={user}/>}/>
+            </Routes>
+            <Footer/>
+        </>
+    );
 }
 
-export default App;
+
+
+
+
+
+

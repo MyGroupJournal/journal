@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+#wrapper{
+    background-color: rgba(50, 157, 156, 1);
+    padding: 20px clamp(2.813rem, 0.98vw + 2.574rem, 3.75rem);
+    color: white;
+    width: clamp(24.375rem, 30.392vw + 16.967rem, 53.438rem);
+    height: 100vh;
+    position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url('./assets/fonts/Poppins-Bold.ttf');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+    font-family: 'PoppinsSemiBold';
+    src: url('./assets/fonts/Poppins-SemiBold.ttf');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+    font-family: 'PoppinsRegular';
+    src: url('./assets/fonts/Poppins-Regular.ttf');
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+    font-family: 'PoppinsMedium';
+    src: url('./assets/fonts/Poppins-Medium.ttf');
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+    font-family: 'Slackey';
+    src: url('./assets/fonts/Slackey-Regular.ttf');
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+    animation: rotate 1s linear infinite;
+    top: 13%;
+    left: 90%
+}
+.loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite ;
+}
+.loader::after{
+    inset: 8px;
+    transform: rotate3d(90, 90, 0, 180deg );
+    border-color: #FF3D00;
+}
+
+@keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
 }
