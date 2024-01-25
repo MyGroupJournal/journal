@@ -5,6 +5,9 @@
     width: clamp(24.375rem, 30.392vw + 16.967rem, 53.438rem);
     height: 100vh;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 @font-face {
@@ -65,4 +68,10 @@
     0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
     50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
     75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+}
+
+.active{
+    border-radius: 5px!important;
+    background: rgba(86, 198, 150, 0.85) !important;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) !important;
 }

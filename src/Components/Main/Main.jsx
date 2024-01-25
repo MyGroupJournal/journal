@@ -1,21 +1,32 @@
-import {useNavigate} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import Category from "./Category/Category";
-export default function Main({user}){
+import React, {useEffect, useState} from "react";
+import Login from "./Login/Login";
+
+export default function Main({setLoader}){
     let navigate = useNavigate()
-    if (user === 'admin' && window.innerHeight <= 870) {
+    const [page, setPage] = useState('/')
+    const [user, setUser] = useState('')
+
+    if (user === 'admin' && window.innerHeight <= 845) {
         const wrapperElement = document.querySelector('#wrapper');
-        wrapperElement.style.height = '110vh';
+        wrapperElement.style.height = '130vh';
     }
-    function nextPage(e) {
-        if (e){
-            let nextPage = e.target.closest('.block_block__93tYJ').children[1].textContent.toLowerCase()
-            navigate(nextPage)
-        } else navigate('/main')
-    }
+
+    function userSet(item) {setUser(item)}
+    function pageSet(current) {setPage(current)}
+
+    useEffect(() => {
+        navigate(page.toLowerCase())
+        // eslint-disable-next-line
+    }, [page]);
 
     return(
         <>
-            <Category user={user} nextPage={nextPage}/>
+            <Routes>
+                <Route path={'/'}  element={<Login setUser={(current) => userSet(current)} pageSet={(current) => pageSet(current)} setLoading={(current) => setLoader(current)} />}/>
+                <Route path={'/main/*'} element={(page==='main') && <Category user={user}/>}/>
+            </Routes>
         </>
     )
 }

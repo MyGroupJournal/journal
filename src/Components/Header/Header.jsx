@@ -74,7 +74,7 @@ export default function Header() {
                     </svg>
                 <h3 className={modules.logo__text}>Journal</h3>
             </div>
-            <h2 className={modules.date}>{(date.getDay()).toString().padStart(2, '0')}.{(date.getMonth() + 1).toString().padStart(2, '0')}.{date.getFullYear()}</h2>
+            <h2 className={modules.date}>{(date.getDate()).toString().padStart(2, '0')}.{(date.getMonth() + 1).toString().padStart(2, '0')}.{date.getFullYear()}</h2>
         </div>
     )
 }

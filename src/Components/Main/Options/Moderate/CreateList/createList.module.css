@@ -1,0 +1,54 @@
+.students {
+  max-height: 520px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.students::-webkit-scrollbar {
+  display: none;
+}
+
+.match {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.subject {
+  margin-bottom: 15px;
+  margin-top: 15px;
+  font-size: 36px;
+  font-family: "PoppinsSemiBold", serif;
+}
+
+.buttons button {
+  border-radius: 5px;
+  background: rgba(123, 228, 149, 0.85);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 8.5px;
+  color: white;
+  text-align: center;
+  font-family: "PoppinsMedium", serif;
+  font-size: clamp(0.938rem, 0.327vw + 0.858rem, 1.25rem);
+  font-weight: 500;
+  margin-bottom: 24px;
+  width: clamp(9.375rem, 11.111vw + 6.667rem, 20rem);
+  min-width: 280px;
+  cursor: pointer;
+  transition: 1s all ease-in-out;
+}
+.buttons button:active {
+  border-radius: 5px;
+  background: rgba(86, 198, 150, 0.85);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.buttons .confirm {
+  background-color: #1b7d62;
+  transition: 50ms all ease-in-out;
+}
+.buttons .confirm:active {
+  background-color: #093809;
+}
+
+/*# sourceMappingURL=createList.module.css.map */
