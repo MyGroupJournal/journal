@@ -1,4 +1,4 @@
-export const link = 'https://v1.slashapi.com/tenshi/google-sheets/B57y9coQRd'
+export const link = 'https://v1.slashapi.com/tenshi/google-sheets/D0BSKOa2Q6'
 
 export let surnames = [
     'Білоус',
@@ -33,7 +33,7 @@ export let surnames = [
     'Шиндерук',
     'Ярмоленко' ]
 
-export let courses = [
+export const courses = [
     'UI',
     'АК',
     'Алгоритми',
@@ -41,5 +41,20 @@ export let courses = [
     'Пр.Прог.Заб',
     'Програм.забез.підп.автотр.галузі',
     'Чис. методи'
+]
+
+export const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
 ]
 

@@ -3,6 +3,7 @@ import CreateBlock from "./CreateBlock";
 import {useEffect} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Moderate from "../Options/Moderate/Moderate";
+import Journal from "../Options/Journal/Journal";
 
 export default function Category({user}) {
     const navigate = useNavigate()
@@ -29,6 +30,7 @@ export default function Category({user}) {
             </div>
             }/>
             <Route path={'moderate/*'} element={<Moderate/>}/>
+            <Route path={'journal/*'} element={<Journal/>}/>
         </Routes>
     )
 }

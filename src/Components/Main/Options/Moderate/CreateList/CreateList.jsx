@@ -27,7 +27,7 @@ export default function CreateList(){
         data[current.target.parentElement.id] = !data[current.target.parentElement.id]
     }
     function confirm() {
-        if(window.confirm('Are u sure u want send data?')){
+        if(window.confirm('Are you sure you want to send the data?')){
             let confirmedData = data.map(element => ({'data': element}))
             setDataSend(confirmedData)
         }

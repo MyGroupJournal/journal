@@ -21,7 +21,7 @@ export default function Moderate(){
                 <Routes>
                     <Route path={'/*'} element={<CreateSubjectButtons setSubject={setSubject}/>}/>
                     {Boolean(nextPage) && <Route path={nextPage} element={<CreateList/>}/>}
-                    </Routes>
+                </Routes>
             </section>
         </>
     )
