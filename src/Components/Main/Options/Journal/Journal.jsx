@@ -4,14 +4,17 @@ import {courses, link} from "../../../otherFile";
 import modules from "../Journal/journal.module.css";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import CreateMonths from "./CreateMonths/CreateMonths";
+import CreateMissed from "./CreteMissed/CreateMissed";
 
 export default function Journal(){
     const [date, setDate] = useState([])
     const [data, setData] = useState([])
-    const [monthData, setSetMonthData] = useState([])
+    const [complDate, setComplDate] = useState('')
+    const [monthData, setMonthData] = useState([])
     const [missStudents, setMissStudents] = useState()
     const navigate = useNavigate()
     function setDateNext(e) {
+        setComplDate(e.target.textContent)
         let formatedDate = `${Number(e.target.textContent.split('.')[0])}.${Number(e.target.textContent.split('.')[1])}.${e.target.textContent.split('.')[2]}`
         setDate(data.filter(element => element.startsWith(formatedDate)))
     }
@@ -25,9 +28,10 @@ export default function Journal(){
                 .catch(error => console.log(error))
         }
         axiosData().catch(error => console.log(error))
+
+        navigate('');
         // eslint-disable-next-line
     }, []);
-
     useEffect(() => {
         let tempArray = []
         // eslint-disable-next-line array-callback-return
@@ -37,47 +41,48 @@ export default function Journal(){
             if (!tempArray[month]) tempArray[month] = []
             tempArray[month].push(fullDate);
         })
-        setSetMonthData(tempArray)
+        setMonthData(tempArray)
         // eslint-disable-next-line
     }, [data]);
-
     useEffect(() => {
-        async function axiosDate(){
-            let tempMissStudent = []
-            await Promise.all(
-                // eslint-disable-next-line array-callback-return
-                    date.map(element => {
-                    let missintgStudents =[]
-                    let fullObject = []
-                    axios.get(link + '/' + element)
-                        .then(res => res.data.data.map(element => Object.values(element)[0] === 'FALSE'))
-                        // eslint-disable-next-line array-callback-return
-                        .then(res => res.map((num, id) =>  {if (num) missintgStudents.push(id)}))
-                        .then(() => {
-                            fullObject.push(missintgStudents)
-                            fullObject.push(courses[element.split('-')[1]])
-                            tempMissStudent.push(fullObject)
-                        })
+        async function axiosDate() {
+            const tempMissStudent = await Promise.all(
+                date.map(async (element) => {
+                    const missintgStudents = [];
+                    const fullObject = {};
+                    try {
+                        const response = await axios.get(link + '/' + element);
+                        response.data.data.forEach((item, id) => {
+                            if (Object.values(item)[0] === 'FALSE') {
+                                missintgStudents.push(id);
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Error fetching missing students data:', error);
+                    }
+
+                    fullObject[element] = { students: missintgStudents, course: courses[element.split('-')[1]] };
+                    return fullObject;
                 })
-            )
-            setMissStudents(tempMissStudent)
+            );
+
+            setMissStudents(tempMissStudent);
         }
 
-        date.length > 0 && axiosDate();
-
-        navigate('')
+        if(date.length > 0){
+            axiosDate();
+            navigate(complDate)
+        }
         // eslint-disable-next-line
     }, [date]);
-    useEffect(() => {
-        console.log(missStudents)
-    }, [missStudents]);
     return(
         <section className={modules.journal}>
             <Routes>
-                {monthData.length > 1 ?
-                    <Route path={'/*'} element={<CreateMonths monthData={monthData} setData={setDateNext} data={data}/>}/>:
+                { monthData.length > 1 ?
+                    <Route path={'/'} element={<CreateMonths missStudents={missStudents} monthData={monthData} setData={setDateNext} data={data}/>}/>:
                     <Route path={'/'} element={<div className={modules.loader}></div>}/>
                 }
+                {date.length > 0 && <Route path={complDate} element={<CreateMissed missedStudents={missStudents} date={complDate}/>}/>}
             </Routes>
         </section>
     )

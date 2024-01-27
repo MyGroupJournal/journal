@@ -1,6 +1,6 @@
 #wrapper{
     background-color: rgba(50, 157, 156, 1);
-    padding: 20px clamp(2.813rem, 0.98vw + 2.574rem, 3.75rem);
+    padding: 20px clamp(1.563rem, 2.288vw + 1.005rem, 3.75rem);
     color: white;
     width: clamp(24.375rem, 30.392vw + 16.967rem, 53.438rem);
     height: 100vh;
