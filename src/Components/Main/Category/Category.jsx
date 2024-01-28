@@ -23,9 +23,9 @@ export default function Category({user}) {
         <Routes>
             <Route path={''} element={
                 <div className={modules.variantsBlock}>
-                <div className={modules.variants} style={{width: user === 'admin' ? '100%' : ''}}>
+                <div className={modules.variants} style={{width: (user === 'helper' || user === 'admin') ? '100%' : ''}}>
                     <CreateBlock nextPage={nextPage}/>
-                    {(user === 'admin' || user === 'helper') && <CreateBlock nextPage={nextPage} user={user}/>}
+                    {(user === 'helper' || user === 'admin') && <CreateBlock nextPage={nextPage} user={user}/>}
                 </div>
             </div>
             }/>
