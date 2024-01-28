@@ -1,4 +1,5 @@
 .journal {
+  min-height: 48px;
   border-radius: 8px;
   background: rgba(217, 217, 217, 0.2);
   padding: clamp(0.938rem, 2.941vw + 0.221rem, 3.75rem) clamp(1.25rem, 3.856vw + 0.31rem, 4.938rem);
@@ -17,8 +18,7 @@
   position: absolute;
   animation: rotate 1s linear infinite;
   top: 28%;
-  left: 50%;
-  transform: translateX(-50px);
+  left: 43%;
 }
 
 .loader::before, .loader::after {

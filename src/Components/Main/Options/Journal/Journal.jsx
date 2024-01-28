@@ -41,7 +41,14 @@ export default function Journal(){
             if (!tempArray[month]) tempArray[month] = []
             tempArray[month].push(fullDate);
         })
-        setMonthData(tempArray)
+        let uniqArray = tempArray.map(element => {
+            if (element && element.length > 0) {
+                return Array.from(new Set(element));
+            } else {
+                return null;
+            }
+        });
+        setMonthData(uniqArray)
         // eslint-disable-next-line
     }, [data]);
     useEffect(() => {
@@ -75,7 +82,6 @@ export default function Journal(){
         }
         // eslint-disable-next-line
     }, [date]);
-    console.log(monthData)
     return(
         <section className={modules.journal}>
             <Routes>
