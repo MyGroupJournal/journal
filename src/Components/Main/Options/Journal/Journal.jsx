@@ -75,10 +75,11 @@ export default function Journal(){
         }
         // eslint-disable-next-line
     }, [date]);
+    console.log(monthData)
     return(
         <section className={modules.journal}>
             <Routes>
-                { monthData.length > 1 ?
+                { monthData.length > 0 ?
                     <Route path={'/'} element={<CreateMonths missStudents={missStudents} monthData={monthData} setData={setDateNext} data={data}/>}/>:
                     <Route path={'/'} element={<div className={modules.loader}></div>}/>
                 }

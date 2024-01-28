@@ -3,7 +3,7 @@ import {months} from "../../../../otherFile";
 import uniqid from 'uniqid';
 
 
-export default function CreateMonths({setData, missStudents, monthData}){
+export default function CreateMonths({setData, monthData}){
     function moreInfoSet(current) {
         let section = current.target.closest('section').children
         let currentDiv = current.target.parentElement
@@ -13,8 +13,8 @@ export default function CreateMonths({setData, missStudents, monthData}){
     return(
         <>
             {monthData.map((element, id) => {
-                    let monthName = months[id]
-                    return(
+                let monthName = months[id]
+                return(
                         <div className={modules.month} key={id}>
                             <div onClick={moreInfoSet} className={modules.topDiv}>
                                 <h2 className={modules.monthName}>{monthName}</h2>
