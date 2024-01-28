@@ -14,6 +14,7 @@ export default function Moderate(){
     }
     useEffect(() => {
         navigate(nextPage);
+        // eslint-disable-next-line
     }, [nextPage]);
     return(
         <>

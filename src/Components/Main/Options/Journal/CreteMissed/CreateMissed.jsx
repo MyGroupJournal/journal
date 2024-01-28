@@ -1,7 +1,7 @@
 import modules from './createMissed.module.css'
 import uniqid from "uniqid";
 import {surnames} from "../../../../otherFile";
-import {Route, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 export default function CreateMissed({date, missedStudents}){

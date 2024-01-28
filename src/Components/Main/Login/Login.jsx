@@ -1,6 +1,6 @@
 import {useState} from "react";
 import LoginPage from "./LoginPage";
-import {decryptText} from "../../../cryptoUtilt";
+import {decryptText} from "../../cryptoUtilt";
 import axios from "axios";
 export default function Login({setLoading, pageSet, setUser}){
     const [text, setText] = useState('');
