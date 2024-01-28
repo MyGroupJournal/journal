@@ -6,6 +6,9 @@
   padding: 25px 51px;
   margin-top: clamp(0.938rem, -0.98vw + 1.176rem, 0rem);
   cursor: pointer;
+  &:nth-child(1){
+    margin-right: clamp(0rem, 8.497vw - 2.071rem, 8.125rem);
+  }
 }
 .block .blockTitle {
   text-align: center;
