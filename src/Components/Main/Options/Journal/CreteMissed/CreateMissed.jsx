@@ -42,7 +42,7 @@ export default function CreateMissed({date, missedStudents}){
                                     {missedStudents.map(element => {
                                         let elementObject = element[(Object.keys(element))]
                                         let students = []
-                                        elementObject['students'].map(id => students.push(surnames[id]))
+                                        elementObject['students'].map(id => students.push(surnames[id+1]))
                                         for (let id = 0; id < students.length - 1; id++) {
                                             students[id] = students[id] + ', '
                                         }
