@@ -17,7 +17,7 @@ export default function CreateMissed({date, missedData, student, mode = 'journal
     }, [close]);
     return (
         <>
-            {!Boolean(missedData) ?
+            {!Boolean(missedData) || missedData.length < 1?
                 <div className={modules.loader}></div>:
                 (
                     <>

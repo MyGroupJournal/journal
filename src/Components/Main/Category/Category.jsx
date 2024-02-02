@@ -27,7 +27,7 @@ export default function Category({user}) {
                 <div className={modules.variants} style={{width: (user === 'helper' || user === 'admin') ? '100%' : ''}}>
                     <CreateBlock nextPage={nextPage}/>
                     {(user === 'helper' || user === 'admin') && <CreateBlock type={'first'} nextPage={nextPage} user={user}/>}
-                    {(user === 'helper' || user === 'admin') && <CreateBlock type={'second'} nextPage={nextPage} user={user}/>}
+                    {(user === 'admin') && <CreateBlock type={'second'} nextPage={nextPage} user={user}/>}
                 </div>
             </div>
             }/>

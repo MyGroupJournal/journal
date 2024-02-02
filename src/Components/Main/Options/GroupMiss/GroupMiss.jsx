@@ -54,9 +54,13 @@ export default function GroupMiss() {
             getDates()
             navigate('missed')
         }
+        // eslint-disable-next-line
     }, [choice]);
 
-    useEffect(() => {navigate('')}, []);
+    useEffect(() => {
+        navigate('')
+        // eslint-disable-next-line
+    }, []);
 
     return(
         <section className={modules.groupMiss}>
