@@ -1,0 +1,15 @@
+.variantsBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(6.25rem, 10.131vw + 3.781rem, 15.938rem);
+  margin-bottom: clamp(6.25rem, 10.131vw + 3.781rem, 15.938rem);
+}
+.variantsBlock .variants {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/*# sourceMappingURL=category.module.css.map */

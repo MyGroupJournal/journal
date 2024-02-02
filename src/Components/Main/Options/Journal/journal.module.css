@@ -1,0 +1,60 @@
+.journal {
+  min-height: 48px;
+  border-radius: 8px;
+  background: rgba(217, 217, 217, 0.2);
+  padding: clamp(0.938rem, 2.941vw + 0.221rem, 3.75rem) clamp(1.25rem, 3.856vw + 0.31rem, 4.938rem);
+  margin: clamp(3.75rem, 0.654vw + 3.591rem, 4.375rem) 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: absolute;
+  animation: rotate 1s linear infinite;
+  top: 28%;
+  left: 43%;
+}
+
+.loader::before, .loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  animation: prixClipFix 2s linear infinite;
+}
+
+.loader::after {
+  inset: 8px;
+  transform: rotate3d(90, 90, 0, 180deg);
+  border-color: #FF3D00;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  75%, 100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+}
+
+/*# sourceMappingURL=journal.module.css.map */

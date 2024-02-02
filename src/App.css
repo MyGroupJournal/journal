@@ -1,0 +1,80 @@
+#wrapper{
+    background-color: rgba(50, 157, 156, 1);
+    padding: 20px clamp(1.375rem, 0.784vw + 1.184rem, 2.125rem);
+    color: white;
+    width: clamp(24.375rem, 30.392vw + 16.967rem, 53.438rem);
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    @media (orientation: portrait) {
+        height: 160vh;
+    }
+}
+
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url('./assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'PoppinsSemiBold';
+    src: url('./assets/fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'PoppinsRegular';
+    src: url('./assets/fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'PoppinsMedium';
+    src: url('./assets/fonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Slackey';
+    src: url('./assets/fonts/Slackey-Regular.ttf');
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+    animation: rotate 1s linear infinite;
+    top: 13%;
+    left: 88%
+}
+.loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid #FFF;
+    animation: prixClipFix 2s linear infinite ;
+}
+.loader::after{
+    inset: 8px;
+    transform: rotate3d(90, 90, 0, 180deg );
+    border-color: #FF3D00;
+}
+
+@keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+}
+
+.active{
+    border-radius: 5px!important;
+    background: rgba(86, 198, 150, 0.85) !important;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) !important;
+}

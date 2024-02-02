@@ -1,0 +1,46 @@
+.groupMiss{
+  border-radius: 8px;
+  background: rgba(217, 217, 217, 0.20);
+  padding: clamp(0.938rem, 2.941vw + 0.221rem, 3.75rem) clamp(1.25rem, 3.856vw + 0.31rem, 4.938rem) ;
+  margin: clamp(3.75rem, 0.654vw + 3.591rem, 4.375rem) 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentButt{
+  border-radius: 5px;
+  background: rgba(123, 228, 149, 0.85);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: .5px .5px .5px 35%;
+  color: white;
+  text-align: left;
+  font-family: 'PoppinsMedium', serif;
+  font-size: clamp(1.063rem, 0.447vw + 0.776rem, 1.313rem);
+  font-weight: 500;
+  margin-bottom: 15px;
+  width: clamp(0.938rem, 30.654vw - 6.534rem, 30.25rem);
+  min-width: 280px;
+  cursor: pointer;
+  transition: 1s all ease-in-out;
+  &:hover{
+    border-radius: 5px;
+    background: rgba(86, 198, 150, 0.85);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+
+.buttons{
+  max-height: 430px;
+  overflow: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &::-webkit-scrollbar{
+    display: none;
+  }
+}
