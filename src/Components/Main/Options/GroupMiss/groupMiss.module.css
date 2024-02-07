@@ -2,7 +2,6 @@
   border-radius: 8px;
   background: rgba(217, 217, 217, 0.2);
   padding: clamp(0.938rem, 2.941vw + 0.221rem, 3.75rem) clamp(1.25rem, 3.856vw + 0.31rem, 4.938rem);
-  margin: clamp(3.75rem, 0.654vw + 3.591rem, 4.375rem) 0;
   position: relative;
   display: flex;
   flex-direction: column;

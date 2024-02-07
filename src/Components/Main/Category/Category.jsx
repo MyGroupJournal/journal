@@ -10,7 +10,7 @@ export default function Category({user}) {
     const navigate = useNavigate()
     function nextPage(e) {
         if (e){
-            let nextPage = e.target.closest('.block_block__93tYJ').children[1].textContent.toLowerCase()
+            let nextPage = e.target.closest('.block_block__mw5ot').children[1].textContent.toLowerCase()
             navigate(nextPage)
         } else navigate('')
     }

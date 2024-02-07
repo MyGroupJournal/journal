@@ -17,7 +17,7 @@
     background: rgba(217, 217, 217, 0.20);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     width: clamp(18.75rem, 16.993vw + 14.608rem, 35rem);
-    margin:clamp(6.25rem, 10.131vw + 3.781rem, 15.938rem) auto clamp(6.25rem, 10.131vw + 3.781rem, 15.938rem) auto;
+    margin:0 auto 0 auto;
     .form__text{
       text-align: center;
       font-family: 'PoppinsSemiBold', serif;
