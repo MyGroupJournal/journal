@@ -1,13 +1,14 @@
 import modules from "../GroupMiss/groupMiss.module.css";
-import {courses, link, surnames} from "../../../otherFile";
+import {courses, surnames} from "../../../otherFile";
 import {useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import CreateSubjectButtons from "../CreateSubjectButtons/CreateSubjectButtons";
-import axios from "axios";
 import uniqid from "uniqid";
 import CreateMissed from "../Journal/CreteMissed/CreateMissed";
+import {useSelector} from "react-redux";
 
 export default function GroupMiss() {
+    const {data, status} = useSelector(state => state.data)
     const [student, setStudent] = useState('')
     const [choice, setChoice] = useState('')
     const [missingDates, setMissingDates] = useState([])
@@ -18,34 +19,27 @@ export default function GroupMiss() {
 
     useEffect(() => {
         async function getDates(){
-            let data = []
             switch (choice){
                 case 'All':
                     let fullObject = []
-                    for(let i = 1; i < courses.length + 1; i++){
-                        await axios.get(`${link}/${i}`)
-                            .then(res => data.push(res.data.data))
-                    }
-                    for (let i = 0; i < data.length; i++) {
-                        let subject = courses[i];
-                        let dates = [];
-                        let element = data[i];
-                        if(element !== undefined) {
-                            for (let j = 0; j < element.length; j++) {
-                                (element[j][student] === '0') && dates.push(element[j]['Дата'])
-                            }
-                        }
-                        (dates.length !== 0) && fullObject.push([{'subject': subject}, {'dates':dates}])
-                    }
+                    let dataZero = data.map(month => month.filter(element => Number(element[student]) === 0))
+                    // eslint-disable-next-line
+                    dataZero.map(month => month.map(element => {
+                        let subj = element['Subj']
+                        fullObject[subj] ? fullObject[subj].push(element['Дата']) : (fullObject[subj] = [element['Дата']]);
+                    }))
                     setMissingDates(fullObject)
                     break
                 default:
-                    let dates =[]
                     let tempObj = []
-                    await axios.get(`${link}/${courses.indexOf(choice)+1}`)
-                        .then(res => data.push(res.data.data))
-                    for(let element of data[0]){(element[student] === '0') && dates.push(element['Дата'])}
-                    tempObj.push([{'subject': choice}, {'dates': dates}])
+                    let filteredData = data.map(month => month.filter(element => element['Subj'] === courses.indexOf(choice)))
+                    // eslint-disable-next-line
+                    filteredData.map(month => month.map(element => {
+                        if (Number(element[student]) === 0) {
+                            let subjIndex = element['Subj'];
+                            tempObj[subjIndex] ? tempObj[subjIndex].push(element['Дата']) : (tempObj[subjIndex] = [element['Дата']]);
+                        }
+                    }))
                     setMissingDates(tempObj)
                     break
             }
@@ -66,12 +60,12 @@ export default function GroupMiss() {
         <section className={modules.groupMiss}>
             <Routes>
                 {choice === '' ?
-                    <Route path={'/'} element={(student === '') ? (
+                    <Route path={'/'} element={status ? (student === '') ? (
                         <div className={modules.buttons}>
                             {surnames.map((student, id) => (<button key={uniqid()} onClick={chooseStudent}
                                                                     className={modules.studentButt}>{id + 1}. {student}</button>))}
                         </div>
-                    ): <CreateSubjectButtons setSubject={setSubject} mode={true}/>}/>:
+                    ): <CreateSubjectButtons setSubject={setSubject} mode={true}/>: <div className={modules.loader}></div>}/>:
                     <Route path={'missed'} element={<CreateMissed missedData={missingDates} student={student} mode={'group'}/>}/>
                 }
 

@@ -2,11 +2,14 @@ import {Route, Routes, useNavigate} from "react-router-dom";
 import Category from "./Category/Category";
 import React, {useEffect, useState} from "react";
 import Login from "./Login/Login";
+import {useDispatch} from "react-redux";
+import {getData} from "../../redux/dataSlice";
 
 export default function Main({setLoader}){
     let navigate = useNavigate()
     const [page, setPage] = useState('/')
     const [user, setUser] = useState('')
+    const dispatch = useDispatch()
     function userSet(item) {setUser(item)}
     function pageSet(current) {setPage(current)}
 
@@ -14,7 +17,9 @@ export default function Main({setLoader}){
         navigate(page.toLowerCase())
         // eslint-disable-next-line
     }, [page]);
-
+    useEffect(() =>{
+        dispatch(getData())
+    }, [dispatch])
     return(
         <>
             <Routes>

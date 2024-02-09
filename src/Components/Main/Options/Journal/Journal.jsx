@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
-import {courses, link, surnames} from "../../../otherFile";
+import {courses, surnames} from "../../../otherFile";
 import modules from "../Journal/journal.module.css";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import CreateMonths from "./CreateMonths/CreateMonths";
 import CreateMissed from "./CreteMissed/CreateMissed";
+import {useSelector} from "react-redux";
 
 export default function Journal(){
+    const {data, status} = useSelector(state => state.data)
     const [date, setDate] = useState([])
-    const [data, setData] = useState([])
     const [complDate, setComplDate] = useState('')
     const [monthData, setMonthData] = useState([])
     const [missStudents, setMissStudents] = useState()
@@ -23,27 +23,6 @@ export default function Journal(){
         setDate(filteredData)
     }
 
-    useEffect(() => {
-        let tempArr = []
-        async function axiosData() {
-            for(let i = 1; i < courses.length+1; i++){
-                await axios.get(link + '/' + i)
-                    // eslint-disable-next-line array-callback-return
-                    .then(res => res.data.data.map(element => {
-                        let month = [Number(element['Дата'].split('.')[1])] - 1;
-                        element['Subj'] = i-1
-                        if (!tempArr[month]) tempArr[month] = [];
-                        tempArr[month].push(element)
-                    }))
-                    .catch(error => console.log(error))
-            }
-            setData(tempArr)
-        }
-        axiosData().catch(error => console.log(error))
-
-        navigate('');
-        // eslint-disable-next-line
-    }, []);
     useEffect(() => {
         function quickSort(arr) {
             if (arr.length <= 1) return arr;
@@ -85,15 +64,14 @@ export default function Journal(){
     }, [data]);
     useEffect(() => {
         async function axiosDate() {
-            const tempMissStudent = await Promise.all(
-                date.map(async (element, id) => {
+            const tempMissStudent = date.map((element, id) => {
                     const missintgStudents = []
-                    Object.values(element).filter((val, id) => (val === '0') && missintgStudents.push(surnames[id]))
+                    Object.values(element).filter((val, id) => (Number(val) === 0) && missintgStudents.push(surnames[id]))
                     const fullObject = {};
 
                     fullObject[id] = {students: missintgStudents, course: courses[element['Subj']]}
                     return fullObject
-                }))
+                })
             setMissStudents(tempMissStudent);
         }
         if(date.length > 0){
@@ -106,7 +84,7 @@ export default function Journal(){
     return(
         <section className={modules.journal}>
             <Routes>
-                {monthData.length > 0 ?
+                {status ?
                     <Route path={'/'} element={<CreateMonths monthData={monthData} setData={setDateNext}/>}/>:
                     <Route path={'/'} element={<div className={modules.loader}></div>}/>
                 }

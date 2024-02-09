@@ -9,7 +9,7 @@
     justify-content: space-between;
     flex-direction: column;
     @media (orientation: portrait) {
-        height: 160vh;
+        height: 115vh;
     }
 }
 

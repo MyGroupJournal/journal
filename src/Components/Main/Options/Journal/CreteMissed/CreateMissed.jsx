@@ -2,6 +2,7 @@ import modules from './createMissed.module.css'
 import uniqid from "uniqid";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {courses} from "../../../../otherFile";
 
 export default function CreateMissed({date, missedData, student, mode = 'journal'}){
     const navigate = useNavigate()
@@ -17,14 +18,10 @@ export default function CreateMissed({date, missedData, student, mode = 'journal
     }, [close]);
     return (
         <>
-            {!Boolean(missedData) || missedData.length < 1?
-                <div className={modules.loader}></div>:
-                (
-                    <>
-                        <div className={modules.missed}>
-                            <svg onClick={toClose} className={modules.closeSVG} height="45px" width="45px" version="1.1"
-                                 id="Capa_1"
-                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="#000000">
+            <div className={modules.missed}>
+                <svg onClick={toClose} className={modules.closeSVG} height="45px" width="45px" version="1.1"
+                     id="Capa_1"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="#000000">
                                 <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
                                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
                                 <g id="SVGRepo_iconCarrier">
@@ -34,8 +31,8 @@ export default function CreateMissed({date, missedData, student, mode = 'journal
                                     </g>
                                 </g>
                             </svg>
-                            {mode === 'journal' ? (
-                                <>
+                {mode === 'journal' ? (
+                    <>
                                     <div className={modules.head}>
                                         <h2 className={modules.title}>Absent on {date} :</h2>
                                     </div>
@@ -56,22 +53,20 @@ export default function CreateMissed({date, missedData, student, mode = 'journal
                                         </ul>
                                     </div>
                                 </>
-                            ): (
-                                <>
+                ): (
+                    <>
                                     <div className={modules.head}>
                                         <h2 className={modules.title}>{student} was absent :</h2>
                                     </div>
                                     <div className={modules.main}>
                                         <ul className={modules.ul}>
-                                            {missedData.map(element => {
-                                                console.log(element[0]['subject'])
-                                                let dates = Object.values(element)[1]['dates']
+                                            {missedData.map((dates, key) => {
                                                 for (let id = 0; id < dates.length - 1; id++) {
                                                     dates[id] = dates[id] + ', '
                                                 }
                                                 return (
                                                     <li key={uniqid()} className={modules.missedLi}>
-                                                        <h3 className={modules.subject}>{element[0]['subject']} :</h3>
+                                                        <h3 className={modules.subject}>{courses[key]} :</h3>
                                                         <p className={modules.students}>{dates.join('').toString()}</p>
                                                     </li>
                                                 )
@@ -79,12 +74,9 @@ export default function CreateMissed({date, missedData, student, mode = 'journal
                                         </ul>
                                     </div>
                                 </>
-                            )}
-                        </div>
-                    </>
-                )
-
-            }
+                )}
+            </div>
         </>
+
     );
 }
