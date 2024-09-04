@@ -1,7 +1,7 @@
 {
-  "name": "journal-group-organeiser",
-  "version": "1.3.1",
-  "homepage": "https://m-ruzhynskyi.github.io/group-organaiser",
+  "name": "journal",
+  "homepage": "https://mygroupjournal.github.io/journal",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
