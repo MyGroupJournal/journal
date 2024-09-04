@@ -19,16 +19,18 @@ export default function CreateMonths({setData, monthData}) {
     ]
 
     function moreInfoSet(current) {
-        let section = current.target.closest('.journalMore').children
-        let currentDiv = current.target.parentElement
-        Array.from(section).map(element => element !== currentDiv ? element.lastChild.style.display = 'none' : element.lastChild.style.display = 'block')
-        Array.from(section).forEach(element => element !== currentDiv ? element.firstChild.lastChild["style"].transform = 'rotate(0deg)' : element.firstChild.lastChild["style"].transform = 'rotate(180deg)')
+        const section = Array.from(current.target.closest('.journalMore').children)
+        section.shift()
+        const currentDiv = current.target.parentElement
+        section.map(element => element !== currentDiv ? element.lastChild.style.display = 'none' : element.lastChild.style.display = 'block')
+        section.forEach(element => element !== currentDiv ? element.firstChild.lastChild["style"].transform = 'rotate(0deg)' : element.firstChild.lastChild["style"].transform = 'rotate(180deg)')
     }
 
     return (
         <>
             {monthData.map((element, id) => {
-                let monthName = months[id]
+                const numberOfMonth = Number(element[0].split('.')[1]) - 1
+                let monthName = months[numberOfMonth]
                 return (
                     <div className={'month'} key={id}>
                         <div onClick={moreInfoSet} className={'month__topDiv'}>

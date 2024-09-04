@@ -20,14 +20,15 @@ export default function sortDates(data) {
       tempArray[month].push(date);
     })
   })
-  let uniqArray = []
+  let uniqDates = []
+  let months = Object.keys(tempArray)
   for (let i = 0; i < Object.values(tempArray).length; i++) {
     let month = Object.values(tempArray)[i]
     month = month.map(day => Number(day.split('.')[0]))
     if (month.length >= 1) {
-      uniqArray.push(Array.from(new Set(month)));
+      uniqDates.push(Array.from(new Set(month)));
     }
   }
-  let sortedArr = uniqArray.map(element => quickSort(element))
-  return sortedArr.map((element, id) => element.map(day => `${day.toString().padStart(2, '0')}.${(id + 1).toString().padStart(2, '0')}.${new Date().getFullYear()}`))
+  let sortedArr = uniqDates.map(element => quickSort(element))
+  return sortedArr.map((element, id) => element.map(day => `${day.toString().padStart(2, '0')}.${(Number(months[id])).toString().padStart(2, '0')}.${new Date().getFullYear()}`))
 }
