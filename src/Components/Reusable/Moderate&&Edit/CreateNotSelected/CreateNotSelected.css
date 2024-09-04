@@ -1,0 +1,8 @@
+.list {
+  margin-top: clamp(0.813rem, 2.857vw - 1.241rem, 2.188rem);
+}
+.list__title {
+  text-align: center;
+}
+
+/*# sourceMappingURL=CreateNotSelected.css.map */

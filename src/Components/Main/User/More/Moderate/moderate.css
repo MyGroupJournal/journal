@@ -1,0 +1,5 @@
+.button__div button:first-child {
+  margin-right: clamp(1.563rem, 0.649vw + 1.408rem, 2.188rem);
+}
+
+/*# sourceMappingURL=moderate.css.map */

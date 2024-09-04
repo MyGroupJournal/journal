@@ -1,32 +1,19 @@
-import {Route, Routes, useNavigate} from "react-router-dom";
-import Category from "./Category/Category";
-import React, {useEffect, useState} from "react";
-import Login from "./Login/Login";
+import {Route, Routes, useLocation} from "react-router-dom";
+import './main.css'
+import {useSelector} from "react-redux";
+import Login from "./User/Login/Login";
+import MoreMain from "./User/More/MoreMain";
 
-export default function Main({setLoader}){
-    let navigate = useNavigate()
-    const [page, setPage] = useState('/')
-    const [user, setUser] = useState('')
-
-    if (user === 'admin' && window.innerHeight <= 845) {
-        const wrapperElement = document.querySelector('#wrapper');
-        wrapperElement.style.height = '130vh';
-    }
-
-    function userSet(item) {setUser(item)}
-    function pageSet(current) {setPage(current)}
-
-    useEffect(() => {
-        navigate(page.toLowerCase())
-        // eslint-disable-next-line
-    }, [page]);
-
-    return(
-        <>
+export default function Main() {
+    const link = useLocation()['pathname'].replace('/', '')
+    const menuStatus = useSelector(state => state.menu.menuStatus)
+    return (
+        <main style={{display: menuStatus ? 'flex' : 'none'}} className={'main'}>
+            {link !== '' && <h2 className={'main__name__page'}>{link.charAt(0).toUpperCase() + link.slice(1)}</h2>}
             <Routes>
-                <Route path={'/'}  element={<Login setUser={(current) => userSet(current)} pageSet={(current) => pageSet(current)} setLoading={(current) => setLoader(current)} />}/>
-                <Route path={'/main/*'} element={(page==='main') && <Category user={user}/>}/>
+                <Route path={''} element={<Login/>}/>
+                <Route path={'more/*'} element={<MoreMain/>}/>
             </Routes>
-        </>
+        </main>
     )
 }

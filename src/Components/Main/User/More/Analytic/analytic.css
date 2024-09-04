@@ -1,0 +1,45 @@
+.analytic {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.analytic .analytics__table {
+  display: flex;
+  height: 80vh;
+  overflow: hidden;
+  overflow-y: auto;
+  padding-right: 15px;
+  justify-content: center;
+  width: 100%;
+}
+.analytic .analytics__table [class$=-wrapper] {
+  display: flex;
+  align-items: center;
+  background-color: #56C696;
+  margin-bottom: 8px;
+}
+.analytic .analytics__table [class^=MuiDivider] {
+  margin: 0;
+  border-color: rgba(255, 255, 255, 0.3803921569);
+  border-width: 1px;
+  height: 24px;
+  width: 0;
+}
+.analytic .analytics__table p {
+  text-align: center;
+  width: 100%;
+  padding: 8px clamp(0.875rem, 1.169vw + 0.597rem, 2rem);
+  font-family: "PoppinsMedium", serif;
+  font-size: clamp(0.875rem, 0.455vw + 0.767rem, 1.313rem);
+}
+.analytic .analytics__table__num [class$=-wrapper] {
+  border-radius: 15px 0 0 15px;
+}
+.analytic .analytics__table__missing-pct [class$=-wrapper] {
+  border-radius: 0 15px 15px 0;
+}
+.analytic .analytics__table [class$=__header] {
+  font-family: "PoppinsBold", serif;
+}
+
+/*# sourceMappingURL=analytic.css.map */
