@@ -6,7 +6,7 @@ export const getLink = createAsyncThunk(
     'schedules/getLink',
     async function (_, {rejectWithValue}) {
         try {
-            const response = await axios.get('https://65e5ffb1d7f0758a76e7ec04.mockapi.io/linkAPI')
+            const response = await axios.get('https://65f9c09f3909a9a65b194987.mockapi.io/data/linkAPI')
             return response.data[0]['link']
         } catch (error) {
             return rejectWithValue(error.message)
